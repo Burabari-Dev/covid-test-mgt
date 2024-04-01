@@ -3,9 +3,10 @@ spring:
     name: covid-test-mgt
   security:
     oauth2:
-      resourceServer:
-        jwt: https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_o9PK57x2H
-
+      resourceserver:
+        jwt:
+          issuer-uri: https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_o9PK57x2H
+---
 
       # client:
       #   registration:
