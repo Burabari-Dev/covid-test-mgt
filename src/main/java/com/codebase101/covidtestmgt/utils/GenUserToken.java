@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.codebase101.covidtestmgt.config.InitCredentials;
+import com.codebase101.covidtestmgt.config.AppCredentials;
 
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
@@ -43,8 +43,8 @@ public class GenUserToken {
   }
   
   public static String byUsernameAndPassword(String username, String password) {
-    USERPOOL_CLIENT_ID = InitCredentials.USERS_APP_CLIENT_ID.get();
-    USERPOOL_CLIENT_SECRET = InitCredentials.USERS_APP_CLIENT_SECRET.get();
+    USERPOOL_CLIENT_ID = AppCredentials.USERS_APP_CLIENT_ID.get();
+    USERPOOL_CLIENT_SECRET = AppCredentials.USERS_APP_CLIENT_SECRET.get();
 
     CognitoIdentityProviderClient client = CognitoIdentityProviderClient
         .builder()

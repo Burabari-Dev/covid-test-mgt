@@ -18,7 +18,7 @@ import software.amazon.awssdk.services.ssm.model.SsmException;
  * 
  * Object of this class should be initialized at app startup for all identity related services to have access to its fields.
  */
-public class InitCredentials {                                // -> This class is implemented as a singleton
+public class AppCredentials {                                // -> This class is implemented as a singleton
   // -> The credentials to be initialized
   public static Optional<String> USER_POOL_NAME;
   public static Optional<String> USER_POOL_ID;
@@ -30,9 +30,9 @@ public class InitCredentials {                                // -> This class i
   // public static String ADMINS_APP_CLIENT_ID;
   // public static String ADMINS_APP_CLIENT_SECRET;
 
-  private static InitCredentials instance;                    // -> private static variable to hold the singleton instance
+  private static AppCredentials instance;                    // -> private static variable to hold the singleton instance
 
-  private InitCredentials() {                                 // -> constructor is called only once if instance == null
+  private AppCredentials() {                                 // -> constructor is called only once if instance == null
     Region AWS_REGION = Region.EU_WEST_2;
     SsmClient client = SsmClient.builder()
         .region(AWS_REGION)                                   // TODO -> Hardcoded region -> See if it can be provided by property file
@@ -47,7 +47,7 @@ public class InitCredentials {                                // -> This class i
 
   public static void newInstance() {                          // -> ensures that only one instance of InitCredentials is created
     if (instance == null)
-      instance = new InitCredentials();
+      instance = new AppCredentials();
   }
 
   private Optional<String> getParameter(SsmClient client, String paramName) {

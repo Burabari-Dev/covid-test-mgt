@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codebase101.covidtestmgt.config.InitCredentials;
+import com.codebase101.covidtestmgt.config.AppCredentials;
 import com.codebase101.covidtestmgt.utils.HashUtils;
 
 import software.amazon.awssdk.regions.Region;
@@ -28,9 +28,9 @@ public class UserLogin {
         .builder()
         .region(Region.EU_WEST_2)
         .build();
-    InitCredentials.newInstance(); // -> Just in case it was not pre-initialized
-    CLIENT_ID = InitCredentials.USERS_APP_CLIENT_ID.get();
-    CLIENT_SECRET = InitCredentials.USERS_APP_CLIENT_SECRET.get();
+    AppCredentials.newInstance(); // -> Just in case it was not pre-initialized
+    CLIENT_ID = AppCredentials.USERS_APP_CLIENT_ID.get();
+    CLIENT_SECRET = AppCredentials.USERS_APP_CLIENT_SECRET.get();
   }
 
   public String byUsernameAndPassword(String username, String password) {
