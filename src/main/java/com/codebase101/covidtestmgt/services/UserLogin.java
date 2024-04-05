@@ -28,13 +28,12 @@ public class UserLogin {
         .builder()
         .region(Region.EU_WEST_2)
         .build();
-    InitCredentials.newInstance();                                      //-> Just in case it was not pre-initialized
+    InitCredentials.newInstance(); // -> Just in case it was not pre-initialized
     CLIENT_ID = InitCredentials.USERS_APP_CLIENT_ID.get();
     CLIENT_SECRET = InitCredentials.USERS_APP_CLIENT_SECRET.get();
   }
 
   public String byUsernameAndPassword(String username, String password) {
-    
     String secretHash = HashUtils.calculateSecretHash(CLIENT_ID, CLIENT_SECRET, username);
 
     Map<String, String> authParams = new HashMap<>();
@@ -53,7 +52,7 @@ public class UserLogin {
       InitiateAuthResponse response = client.initiateAuth(request);
       return response.authenticationResult().accessToken();
     } catch (CognitoIdentityProviderException ex) {
-      //TODO: Better way to handle these errors
+      // TODO: Better way to handle these errors
       return null;
     }
   }
