@@ -29,8 +29,8 @@ public class TestController {
   public ResponseEntity<AccessToken> login(@RequestBody Creds creds) {
     String accessToken = userLogin.byUsernameAndPassword(creds.username(), creds.password());
     if(accessToken == null)
-      return ResponseEntity.badRequest().body(new AccessToken(accessToken));
-    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(new AccessToken(accessToken));
+      return ResponseEntity.badRequest().body(new AccessToken(creds.username(), accessToken));
+    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(new AccessToken(creds.username(), accessToken));
   }
 
   @PostMapping("/gentoken")
