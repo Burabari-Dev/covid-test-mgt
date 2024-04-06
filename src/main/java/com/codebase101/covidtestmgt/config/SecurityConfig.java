@@ -5,6 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 
+/**
+ * Expose the "/login" and "/signup" endpoints for unauthenticated users to be able to 
+ * login and signup. 
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -22,6 +26,6 @@ public class SecurityConfig {
 
   @Bean
   public WebSecurityCustomizer ignoringCustomizer() {
-    return (web) -> web.ignoring().requestMatchers("/", "/login");
+    return (web) -> web.ignoring().requestMatchers("/", "/login", "/signup", "/gentoken");
   }
 }
