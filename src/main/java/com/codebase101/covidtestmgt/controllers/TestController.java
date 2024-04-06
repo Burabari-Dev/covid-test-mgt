@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codebase101.covidtestmgt.pojos.AccessToken;
 import com.codebase101.covidtestmgt.pojos.Creds;
 import com.codebase101.covidtestmgt.services.UserLogin;
-import com.codebase101.covidtestmgt.utils.GenUserToken;
 
 
 @RestController
@@ -31,12 +30,6 @@ public class TestController {
     if(accessToken == null)
       return ResponseEntity.badRequest().body(new AccessToken(creds.username(), accessToken));
     return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(new AccessToken(creds.username(), accessToken));
-  }
-
-  @PostMapping("/gentoken")
-  public ResponseEntity<AccessToken> genToken(@RequestBody Creds creds) {
-    String token = GenUserToken.byUsernameAndPassword(creds.username(), creds.password());
-    return ResponseEntity.ok().body(new AccessToken(token));
   }
 
 }
